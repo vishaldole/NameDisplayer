@@ -4,15 +4,28 @@ export default function Displayer() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [fullName, setFullName] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
+
     if (firstName.trim() && lastName.trim()) {
-      setFullName(`${firstName} ${lastName}`);
+      setFullName(`${firstName.trim()} ${lastName.trim()}`);
+      setIsSubmitted(true);
     } else {
-      setFullName("");
+      setIsSubmitted(false);
     }
   }
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+    setIsSubmitted(false);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+    setIsSubmitted(false);
+  };
 
   return (
     <>
@@ -27,7 +40,7 @@ export default function Displayer() {
             type="text"
             name="firstName"
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={handleFirstNameChange}
             required
           />
         </label>
@@ -37,7 +50,7 @@ export default function Displayer() {
             type="text"
             name="lastName"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={handleLastNameChange}
             required
           />
         </label>
@@ -45,7 +58,8 @@ export default function Displayer() {
           Submit
         </button>
       </form>
-      {firstName.trim() && lastName.trim() && (
+
+      {isSubmitted && (
         <div>
           <p>Full Name: {fullName}</p>
         </div>
