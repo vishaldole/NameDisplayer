@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 export default function Displayer() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [fullName, setFullName] = useState("");
 
   function handleSubmit(e) {
@@ -19,11 +21,23 @@ export default function Displayer() {
       >
         <label>
           First Name:
-          <input type="text" name="firstName" required />
+          <input
+            type="text"
+            name="firstName"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
         </label>
         <label>
           Last Name:
-          <input type="text" name="lastName" required />
+          <input
+            type="text"
+            name="lastName"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
         </label>
         <button style={{ width: "70px" }}>Submit</button>
       </form>
