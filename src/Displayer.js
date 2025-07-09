@@ -27,9 +27,11 @@ export default function Displayer() {
         </label>
         <button style={{ width: "70px" }}>Submit</button>
       </form>
-      <div>
-        <p>Full Name: {fullName}</p>
-      </div>
+      {fullName ? (
+        <div>
+          <p>Full Name: {fullName}</p>
+        </div>
+      ) : null}
     </>
   );
 }
