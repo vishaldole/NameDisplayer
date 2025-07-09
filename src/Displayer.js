@@ -7,9 +7,11 @@ export default function Displayer() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const firstName = e.target.elements.firstName.value;
-    const lastName = e.target.elements.lastName.value;
-    setFullName(`${firstName} ${lastName}`);
+    if (firstName.trim() && lastName.trim()) {
+      setFullName(`${firstName} ${lastName}`);
+    } else {
+      setFullName("");
+    }
   }
 
   return (
@@ -39,13 +41,15 @@ export default function Displayer() {
             required
           />
         </label>
-        <button style={{ width: "70px" }}>Submit</button>
+        <button type="submit" style={{ width: "70px" }}>
+          Submit
+        </button>
       </form>
-      {fullName ? (
+      {firstName.trim() && lastName.trim() && (
         <div>
           <p>Full Name: {fullName}</p>
         </div>
-      ) : null}
+      )}
     </>
   );
 }
